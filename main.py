@@ -1,5 +1,5 @@
 from typing import List
-#import uvicorn
+import uvicorn
 from pydantic import BaseModel
 from fastapi import FastAPI
 import pickle
@@ -100,5 +100,5 @@ def func(s: Symptomclass):
     }
 
 
-#if __name__ == "__main__":
-    #uvicorn.run(app, host="0.0.0.0", port=3004)
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=3004)
