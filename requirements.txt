@@ -9,6 +9,3 @@ uvicorn
 pydantic
 fastapi
 pandas
-typing
-pickle
-fastapi.middleware.cors
