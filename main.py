@@ -1,19 +1,24 @@
 from typing import List
-#import uvicorn
-#import gunicorn
-from flask import Flask
+import uvicorn
 from pydantic import BaseModel
 from fastapi import FastAPI
 import pickle
 import pandas as pd
 from fastapi.middleware.cors import CORSMiddleware
 
+app = FastAPI()
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 with open('./model.pkl', 'rb') as file:
     loaded_model = pickle.load(file)
-
-
-app = Flask(__name__)
-
 
 symptomList = ['itching', 'skin_rash', 'nodal_skin_eruptions',
                'continuous_sneezing', 'shivering', 'chills', 'joint_pain',
@@ -77,10 +82,10 @@ class Symptomclass(BaseModel):
     symptoms: List[str]
 
 
-#app = FastAPI()
+app = FastAPI()
 
 
-@app.route("/predict")
+@app.post("/predict")
 def func(s: Symptomclass):
     input = []
     for i in symptomList:
@@ -95,5 +100,5 @@ def func(s: Symptomclass):
     }
 
 
-#if __name__ == "__main__":
-    #app.run(app, host="0.0.0.0", port=3004)
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=3004)
