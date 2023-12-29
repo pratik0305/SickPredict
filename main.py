@@ -8,21 +8,12 @@ import pickle
 import pandas as pd
 from fastapi.middleware.cors import CORSMiddleware
 
-app = Flask(__name__)
-
-
-#origins = ["*"]
-
-#app.add_middleware(
-    #CORSMiddleware,
-    #allow_origins=origins,
-    #allow_credentials=True,
-    #allow_methods=["*"],
-    #allow_headers=["*"],
-#)
-
 with open('./model.pkl', 'rb') as file:
     loaded_model = pickle.load(file)
+
+
+app = Flask(__name__)
+
 
 symptomList = ['itching', 'skin_rash', 'nodal_skin_eruptions',
                'continuous_sneezing', 'shivering', 'chills', 'joint_pain',
@@ -104,5 +95,5 @@ def func(s: Symptomclass):
     }
 
 
-#if __name__ == "__main__":
-    #uvicorn.run(app, host="0.0.0.0", port=3004)
+if __name__ == "__main__":
+    app.run(app, host="0.0.0.0", port=3004)
