@@ -95,5 +95,5 @@ def func(s: Symptomclass):
     }
 
 
-if __name__ == "__main__":
-    app.run(app, host="0.0.0.0", port=3004)
+#if __name__ == "__main__":
+    #app.run(app, host="0.0.0.0", port=3004)
