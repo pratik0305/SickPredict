@@ -9,3 +9,5 @@ uvicorn
 pydantic
 fastapi
 pandas
+sklearn==1.2.2
+pickle
